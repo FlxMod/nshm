@@ -77,7 +77,7 @@ export function start() {
                     }
                 });
 
-                canvas1.maxfps(60);
+                canvas1.maxfps(30);
 
                 GameRuntime.class('Pangu.Manager.CameraManager').method('CommonUpdate').implementation = function(){
                     this.method('CommonUpdate').invoke();
@@ -104,7 +104,7 @@ export function start() {
                         }
 
                         let p = worldCamera.method('WorldToScreenPoint').overload('UnityEngine.Vector3').invoke(obj.method('GetPosition').invoke());
-                        if(p.field('z').value >= 0 && p.field('z').value <= Mod.Val('maxZ')){
+                        if(p.field('z').value >= 0 && p.field('z').value <= Mod.Val('maxZ') && p.field('x').value >= -50 && p.field('y').value >= -50){
                             let h = worldCamera.method('WorldToScreenPoint').overload('UnityEngine.Vector3').invoke(obj.method('GetHeadPosition').invoke());
                             let f = worldCamera.method('WorldToScreenPoint').overload('UnityEngine.Vector3').invoke(obj.method('GetFootPosition').invoke());
                             var playerWidth = parseInt(h.field('x').value) - parseInt(f.field('x').value);
